@@ -1,0 +1,36 @@
+<app-barra-progreso *ngIf="cargador"></app-barra-progreso>
+<div *ngIf="!cargador" class="row mt-5">
+    <div class="col-lg-4 offset-lg-4">
+        <div class="card bg-secondary mb-3" style="max-width: 25rem;">
+            <div class="card-header text-center">Producto</div>
+            <div class="card-body">
+              <form [formGroup]="form" (ngSubmit)="agregarProducto()">
+
+                <input formControlName="nombre" type="text" class="form-control" placeholder="Ingrese nombre">
+                <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched ">El campo Nombre es requerido.</span>
+
+                <input formControlName="descripcion" type="text" class="form-control mt-3" placeholder="Descripcion">
+                <span *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched">El campo Descripcion es requerido.</span>
+
+                <input formControlName="precio" type="number" class="form-control mt-3" placeholder="Precio">
+                <span *ngIf="form.get('precio')?.hasError('required') && form.get('precio')?.touched">El campo Precio es requerido.</span>
+
+                <input formControlName="stock" type="number" class="form-control mt-3" placeholder="Stock">
+                <span *ngIf="form.get('stock')?.hasError('required') && form.get('stock')?.touched">El campo Stock es requerido.</span>
+
+                <div class="row mt-3 text-center">
+                   <div class="col-lg-6">
+                    <button routerLink="/" type="button" class="btn btn-primary">Volver</button>
+                   
+                   </div>
+                   <div class="col-lg-6">
+                    
+                    <button [disabled]="form.invalid" type="submit" class="btn btn-secondary">Aceptar</button>
+                   </div>
+
+                </div>
+                
+            </form>
+            </div>
+    </div>
+</div>
